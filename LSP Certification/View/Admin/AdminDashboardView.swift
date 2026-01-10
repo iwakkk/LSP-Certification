@@ -12,26 +12,6 @@ struct AdminDashboardView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var viewModel = AdminDashboardViewModel()
     
-    @State private var selectedFilter = "ongoing"
-    
-    var filteredLoans: [LoanWithDetails] {
-        switch selectedFilter {
-        case "done":
-            return viewModel.loansWithDetails.filter {
-                $0.actualReturnDate != nil
-            }
-
-        case "ongoing":
-            return viewModel.loansWithDetails.filter {
-                $0.actualReturnDate == nil
-            }
-
-        default:
-            return viewModel.loansWithDetails
-        }
-    }
-
-
     
     var body: some View {
         
@@ -55,10 +35,6 @@ struct AdminDashboardView: View {
                     
                     Text("\(loans.bookTitle)")
                     Text("Return date: \(loans.returnDate.formatted(.dateTime.day().month(.wide).year()))")
-                   
-                    
-                    
-                    
                     
                 }
                 

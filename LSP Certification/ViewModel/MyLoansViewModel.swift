@@ -12,6 +12,7 @@ import Foundation
 class MyLoansViewModel {
     var loans: [Loan] = []
     
+    // Func to load all loans from 1 user
     func loadLoansByUser() async {
         guard let user = SessionManager.shared.currentUser else {
             print("No user logged in to load MyLoans")
@@ -22,13 +23,14 @@ class MyLoansViewModel {
         
         do {
             loans = try await SupabaseService.shared.fetchLoansByUser(for: user.id)
-            
+            loans.sort { $0.actualReturnDate == nil && $1.actualReturnDate != nil }
             print("Loans loaded:", loans.count)
         } catch {
             print("Error fetching loans:", error)
         }
     }
     
+    // Func to return a book from loan
     func returnLoan(_ loan: Loan) async throws {
         let today = Date()
         

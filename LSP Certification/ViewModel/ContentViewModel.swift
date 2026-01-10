@@ -16,6 +16,7 @@ class ContentViewModel {
     var showAdmin = false
     var errorMessage: String?
     
+    // Func to login and check wether the textfield is blank or no name detected in the database
     func login() {
         guard !name.isEmpty else {
             errorMessage = "Please fill your name"
@@ -43,10 +44,4 @@ class ContentViewModel {
         }
     }
     
-    func logout() {
-        SessionManager.shared.currentUser = nil
-        name = ""
-        showMember = false
-        showAdmin = false
-    }
 }

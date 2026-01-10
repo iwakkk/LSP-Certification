@@ -27,21 +27,12 @@ struct CatalogView: View {
         VStack{
             
             // Book List
-            ScrollView{
-                LazyVGrid(columns: columns, spacing: 16) {
+//            ScrollView{
+            List {
+                VStack(alignment: .center) {
                     ForEach(viewModel.books) { book in
                         BookCard(book: book)
                             .opacity(book.availability == "unavailable" ? 0.4 : 1.0)
-                            .overlay {
-                                if book.availability == "unavailable" {
-                                    Text("Unavailable")
-                                        .font(.caption)
-                                        .padding()
-                                        .foregroundColor(.white)
-                                        .background(Color.red)
-                                        .cornerRadius(20)
-                                }
-                            }
                             .onTapGesture {
                                 guard book.availability == "available" else { return }
                                 selectedBook = book
@@ -51,8 +42,8 @@ struct CatalogView: View {
                                 
                             }
                     }
+                    
                 }
-                .padding()
             }
             
         }
