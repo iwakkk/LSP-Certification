@@ -12,6 +12,7 @@ import Foundation
 class CatalogViewModel {
     var books: [Book] = []
 
+    // Func to load books from fetchbooks query
     func loadBooks() async {
         do {
             books = try await SupabaseService.shared.fetchBooks()
@@ -25,6 +26,7 @@ class CatalogViewModel {
         
     }
     
+    // Func to add loan from a user
     func addLoan(for book: Book, loanDate: Date) async throws {
         guard let user = SessionManager.shared.currentUser else {
             print("No user logged in to add loan")

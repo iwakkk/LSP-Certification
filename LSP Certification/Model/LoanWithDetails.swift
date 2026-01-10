@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Loan With Details that is a view in the database, not a table
 struct LoanWithDetails: Identifiable, Codable {
     let id: UUID
     let loanDate: Date

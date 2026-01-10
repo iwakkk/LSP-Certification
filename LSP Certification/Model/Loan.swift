@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Loan struct
 struct Loan : Identifiable, Codable {
     let id: UUID
     let bookId: UUID

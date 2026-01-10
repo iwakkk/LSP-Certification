@@ -10,8 +10,12 @@ import Testing
 
 struct LSP_CertificationTests {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+    var viewModel = CatalogViewModel()
+
+    @Test
+    func testLoadBooks() async throws {
+        await viewModel.loadBooks()
+        #expect(!viewModel.books.isEmpty, "Books should be loaded from Supabase")
     }
 
 }

@@ -13,6 +13,7 @@ class AdminDashboardViewModel {
     
     var loansWithDetails: [LoanWithDetails] = []
 
+    // Func to load all loans with the details
     func loadLoansWithDetails() async {
         do {
             let loans = try await SupabaseService.shared.fetchLoansWithDetails()

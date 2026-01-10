@@ -13,11 +13,6 @@ struct BookCard: View {
     
     var body: some View {
         VStack(spacing: 8) {
-            Image("HarryPotter")
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: 200)
-                .shadow(radius: 4)
             
             VStack{
                 Text(book.title)
@@ -31,14 +26,9 @@ struct BookCard: View {
                     .lineLimit(1)
                 
             }
-            .frame(height: 60)
             
         }
-        .frame(width: 150, height: 250)
         .padding()
-        .background(.ultraThinMaterial)
-        .cornerRadius(8)
-        .shadow(radius: 4)
     }
 }
 
