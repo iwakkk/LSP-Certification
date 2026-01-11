@@ -22,12 +22,6 @@ struct LoanConfirmationView: View {
             VStack(alignment: .center){
                 
                 
-                HStack{
-                    Image("HarryPotter")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 150, maxHeight: 200)
-                        .shadow(radius: 10)
                     
                     
                     VStack(alignment: .leading){
@@ -43,7 +37,7 @@ struct LoanConfirmationView: View {
                     }
                     .padding()
                     
-                }
+                
                 
               
                 
