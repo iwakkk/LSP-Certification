@@ -29,6 +29,7 @@ struct MyLoansView: View {
                         Text("Loan: \(loan.loanDate.formatted(.dateTime.day().month(.wide).year()))")
                         Text("Return: \(loan.returnDate.formatted(.dateTime.day().month(.wide).year()))")
                         
+                        
                         if let actualReturnDate = loan.actualReturnDate {
                             Text("Returned at: \(actualReturnDate.formatted(.dateTime.day().month(.wide).year()))")
                                 .foregroundColor(.green)
@@ -51,8 +52,14 @@ struct MyLoansView: View {
             }
             .navigationTitle("My Loans")
             .task {
+                
                 await catalogViewModel.loadBooks()
-                await viewModel.loadLoansByUser()
+                guard let userId = SessionManager.shared.currentUser?.id else {
+                       print("No user logged in")
+                       return
+                   }
+
+                   await viewModel.loadLoansByUser(for: userId)
             }
         }
     }

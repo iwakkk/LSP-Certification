@@ -13,16 +13,10 @@ class MyLoansViewModel {
     var loans: [Loan] = []
     
     // Func to load all loans from 1 user
-    func loadLoansByUser() async {
-        guard let user = SessionManager.shared.currentUser else {
-            print("No user logged in to load MyLoans")
-            
-            
-            return
-        }
+    func loadLoansByUser(for userId : UUID) async {
         
         do {
-            loans = try await SupabaseService.shared.fetchLoansByUser(for: user.id)
+            loans = try await SupabaseService.shared.fetchLoansByUser(for: userId)
             loans.sort { $0.actualReturnDate == nil && $1.actualReturnDate != nil }
             print("Loans loaded:", loans.count)
         } catch {
@@ -50,7 +44,11 @@ class MyLoansViewModel {
             .eq("id", value: loan.bookId)
             .execute()
         
-        await loadLoansByUser()
+        guard let userId = SessionManager.shared.currentUser?.id else {
+            print("No current user")
+            return
+        }
+        await loadLoansByUser(for: userId)
     }
     
     

@@ -26,8 +26,10 @@ struct AdminDashboardView: View {
                         
                         Spacer()
                         
+                        
                         Text(loans.actualReturnDate == nil ? "Not returned" : "Returned at \(loans.actualReturnDate!.formatted(.dateTime.day().month().year()))")
                             .foregroundColor(loans.actualReturnDate == nil ? .red : .green)
+                        
                         
                     }
                     .padding(.bottom, 5)
@@ -35,6 +37,10 @@ struct AdminDashboardView: View {
                     
                     Text("\(loans.bookTitle)")
                     Text("Return date: \(loans.returnDate.formatted(.dateTime.day().month(.wide).year()))")
+                    if loans.returnDate < Date() && loans.actualReturnDate == nil {
+                        Text("Sudah Telat \(Int(Date().timeIntervalSince(loans.returnDate) / 86400)) hari")
+                            .foregroundColor(loans.actualReturnDate == nil ? .red : .green)
+                    }
                     
                 }
                 

@@ -20,9 +20,6 @@ struct LoanConfirmationView: View {
         NavigationStack{
             
             VStack(alignment: .center){
-                
-                
-                    
                     
                     VStack(alignment: .leading){
                         Text(book.title)

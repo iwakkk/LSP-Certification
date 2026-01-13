@@ -27,7 +27,6 @@ struct CatalogView: View {
         VStack{
             
             // Book List
-//            ScrollView{
             List {
                 VStack(alignment: .center) {
                     ForEach(viewModel.books) { book in
